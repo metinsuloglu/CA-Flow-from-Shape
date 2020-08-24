@@ -1,0 +1,21 @@
+IMAGE PARAMS:
+  pooling_class: "icosahedron"
+  n_pixels: 642 # order 3
+  depth: 4
+  laplacian_type: "combinatorial"
+
+MODEL PARAMS:
+  batch_size: 4
+  learning_rate: 0.0001
+  n_epochs: 150
+  kernel_size: 5
+
+SAVING:
+  path_to_data: "./deepsphere/data/ca_data"
+  model_save_path: "./log"
+
+DATALOADERS:
+  seed: 1
+
+EARLY_STOPPING:
+  earlystopping_patience: -1
