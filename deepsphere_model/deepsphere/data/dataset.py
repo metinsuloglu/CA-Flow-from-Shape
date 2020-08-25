@@ -19,11 +19,15 @@ class WSSSphereLoader(Dataset):
         Initialization.
 
         Args:
-            path (str): Path to the data or desired place the data will be downloaded to.
-            indices (list): List of indices representing the subset of the data used for the current dataset.
+            path (str): Path to the data.
+            fnames (list): Files names to load.
             partition: train val or test (name)
             transform_data (:obj:`transform.Compose`): List of torchvision transforms for the data.
             transform_labels (:obj:`transform.Compose`): List of torchvision transforms for the labels.
+            transform_mask (:obj:`transform.Compose`): List of torchvision transforms for the binary mask / weights.
+            npix: Number of vertices on the icosphere
+            max_norm: Used to normalise the CA shapes
+            wss_mean_std: Used for mean normalisation of WSS values
         """
         self.path = path
         self.partition = partition

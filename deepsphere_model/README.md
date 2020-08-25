@@ -45,4 +45,6 @@ The default behaviour of the test script is to use the pre-trained model named `
 + deepsphere/data/process.py - *contains the pre-processing steps and the algorithm for finding point correspondences*
 + deepsphere/models/spherical_unet/unet_model.py  - *U-Net model definition*
 
-![model architecture](https://github.com/metinsuloglu/CA-Flow-from-Shape/blob/master/deepsphere_model/images/deepsphere_architecture.jpg)
+<p align="center">
+<img src="https://github.com/metinsuloglu/CA-Flow-from-Shape/blob/master/deepsphere_model/images/deepsphere_architecture.jpg" alt="model_architecture" width="80%"/>
+</p>
