@@ -1,6 +1,5 @@
 import numpy as np
 import os
-import pickle
 from collections import defaultdict
 from scipy.interpolate import Rbf
 from utils.sphereicosahedron import SphereIcosahedron
