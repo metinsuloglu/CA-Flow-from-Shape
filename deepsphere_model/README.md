@@ -26,7 +26,7 @@ Also, the algorithms use NumPy / SciPy / scikit-learn. For visualising results m
 The PyTorch Ignite library is not required.
 
 Create a folder `/deepsphere/data/ca_data/` and add the CA shape data as a collection of .txt files, where the rows store 4 values seperated by whitespace:
-(x,y,z) coordinates and a TAWSS value.
+(x,y,z) coordinates and a TAWSS value. The required file names are hard-coded so you might have to change the code in order to be able to load the data.
 
 You can change the hyperparameters of the model in `config.example.yml`. To train and validate the model using a GPU, in this directory run:
 
