@@ -7,8 +7,8 @@ Part of my Master's Thesis at the University of Leeds.
 The aim of the project is to examine ways of predicting time-averaged wall shear stress given the morphology of a cerebral aneurysm (CA).
 This repository contains two folders for different deep learning architectures:
 
-- [PointNet++](https://github.com/charlesq34/pointnet2)
-- [DeepSphere U-Net](https://github.com/deepsphere/deepsphere-pytorch)
+- [PointNet++](https://arxiv.org/abs/1706.02413)
+- [DeepSphere U-Net](https://openreview.net/pdf?id=B1e3OlStPB)
 
 The PointNet++ model expects fixed-sized point clouds as input and outputs the predicted TAWSS values at each point. 
 DeepSphere first projects the CA onto a sphere (a subdivided icosahedron) and passes the transformed representation through 
