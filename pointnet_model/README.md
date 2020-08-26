@@ -10,7 +10,7 @@ must be normalised and the number of points in each sample must be equal.
 </p>
 
 ### Quick Start
-The model uses CUDA and requires a GPU. The code must be executed using Python 2 with TensorFlow 1.x.
+The model uses CUDA and requires a GPU. The code must be executed using Python 2 with TensorFlow 1.x. Part of the code is from the [PointNet++ repository](https://github.com/charlesq34/pointnet2).
 
 To use the model, the custom TensorFlow operations under the folder `tf_ops` must first be compiled.
 To do this, set environment variables:
