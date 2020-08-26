@@ -12,29 +12,31 @@ In this project we encode the anerysm morphology on a sphere.
 The code in this folder implements the steps for mapping a CA point cloud onto a sphere and training the DeepSphere model using spherical graph convolutions.
 
 ### Quick Start
-Part of the code in this folder is taken from the [DeepSphere model repository](https://github.com/deepsphere/deepsphere-pytorch). Therefore
+Part of the code in this folder is taken from the [DeepSphere repository](https://github.com/deepsphere/deepsphere-pytorch). Therefore
 the requirements are the same:
 
 - Python 3
 - PyTorch >= 1.3.1
 - PyGSP fork: https://github.com/Droxef/pygsp/tree/new_sphere_graph
 - torchvision >= 0.4.2
+- PyYAML >= 5.2
 - cudatoolkit >= 10.0 (for running on a GPU)
 
-Also, the algorithms use NumPy / SciPy. For visualising results make sure either Open3D or Matplotlib is installed. 
+Also, the algorithms use NumPy / SciPy / scikit-learn. For visualising results make sure either Open3D or Matplotlib is installed.
+The PyTorch Ignite library is not required.
 
 Create a folder `/deepsphere/data/ca_data/` and add the CA shape data as a collection of .txt files, where the rows store 4 values seperated by whitespace:
-(x,y,z) coordinates and a TAWSS value.
+(x,y,z) coordinates and a TAWSS value. The required file names are hard-coded so you might have to change the code in order to be able to load the data.
 
-You can change the hyperparameters of the model in `config.example.yml`. To train and validate the model, in this directory run:
+You can change the hyperparameters of the model in `config.example.yml`. To train and validate the model using a GPU, in this directory run:
 
-    python train.py --config-file config.example.yml
+    python train.py --config-file config.example.yml --gpu
 
 and to test the model:
 
-    python test.py --config-file config.example.yml
+    python test.py --config-file config.example.yml --gpu
 
-The default behaviour of the test script is to use the pre-trained model named `pretrained_model_38_cases.pt`.
+The default behaviour of the test script is to use the pre-trained model named `pretrained_model_38_cases.pt` (trained on a CPU). Without the command line argument `--gpu`, the code runs on the CPU.
 
 ### Important files
 
