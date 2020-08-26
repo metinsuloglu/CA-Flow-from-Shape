@@ -17,7 +17,7 @@ from torchvision import transforms
 from data.dataset import WSSSphereLoader
 from data.transforms.transforms import Permute, ToTensor
 from models.spherical_unet.unet_model import SphericalUNet
-from utils.initialization import init_device
+from utils.initialization import init_device, get_device
 from utils.parser import create_parser, parse_config
 from utils.metrics import *
 from utils.funcs import reconstruct
@@ -99,16 +99,21 @@ def main(parser_args):
     unet = SphericalUNet(parser_args.pooling_class, parser_args.n_pixels,
                          parser_args.depth, parser_args.laplacian_type,
                          parser_args.kernel_size)
-    unet, device = init_device(parser_args.device, unet)
     
-    wss_mean_std = load_checkpoint(unet, torch.load('./pretrained_model_38_cases.pt'))
+    wss_mean_std = load_checkpoint(unet, torch.load('./pretrained_model_38_cases.pt', map_location=get_device(parser_args.device)))
+    unet, device = init_device(parser_args.device, unet)
     dataloader_test = get_test_dataloader(parser_args, wss_mean_std)
     
     d, y, y_hat, m = test(parser_args, unet, dataloader_test, device)
-    log('[Test set] - L1: {:.8f}   L2: {:.8f}   Avg. Pearson: {:.8f}'.format(mae(y_hat, y, mask=m), mse(y_hat, y, mask=m), avg_pearson(y_hat, y, mask=m)), parser_args)
-    
-    d, m = d.numpy().squeeze(), m.numpy().squeeze()
-    y, y_hat = y.numpy().squeeze(), y_hat.numpy().squeeze()
+    log('[Test set] - L1: {:.8f}   L2: {:.8f}   Avg. Pearson: {:.8f}'.format(mae(y_hat, y, mask=m, device=device),
+                                                                             mse(y_hat, y, mask=m, device=device),
+                                                                             avg_pearson(y_hat, y, mask=m, device=device)), parser_args)
+    try:
+      d, m = d.numpy().squeeze(), m.numpy().squeeze()
+      y, y_hat = y.numpy().squeeze(), y_hat.numpy().squeeze()
+    except TypeError:
+      d, m = d.cpu().numpy().squeeze(), m.cpu().numpy().squeeze()
+      y, y_hat = y.cpu().numpy().squeeze(), y_hat.cpu().numpy().squeeze()
     results = {'dists': d, 'corrs': dataloader_test.dataset.corrs,
                'y': dataloader_test.dataset.untransform(y), 'y_hat': dataloader_test.dataset.untransform(y_hat),
                'weights': m
