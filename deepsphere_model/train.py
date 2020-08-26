@@ -103,7 +103,9 @@ def validate(args, model, loader, epoch, device, name='Val'):
             y_hat.append(output)
             m.append(mask)
         y, y_hat, m = torch.cat(y), torch.cat(y_hat), torch.cat(m)
-        scores = {'l1':mae(y_hat, y, mask=m), 'l2':mse(y_hat, y, mask=m), 'avg_pearson':avg_pearson(y_hat, y, mask=m)}
+        scores = {'l1':mae(y_hat, y, mask=m, device=device),
+                  'l2':mse(y_hat, y, mask=m, device=device),
+                  'avg_pearson':avg_pearson(y_hat, y, mask=m, device=device)}
         log('[{} Eval Epoch {}] - L1: {:.8f}   L2: {:.8f}   Avg. Pearson: {:.8f}'.format(name, epoch, scores['l1'], scores['l2'], scores['avg_pearson']), args)
     return scores
 

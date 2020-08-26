@@ -3,7 +3,9 @@ from scipy.stats import pearsonr
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 # Mean absolute error
-def mae(y_pred, y, mask=None):
+def mae(y_pred, y, mask=None, device=None):
+    if device.type == 'cuda':
+      y, y_pred, mask = y.cpu(), y_pred.cpu(), mask.cpu()
     y_pred, y = y_pred.numpy().squeeze(), y.numpy().squeeze()
     if mask is not None:
         mask = mask.numpy().squeeze()
@@ -12,7 +14,9 @@ def mae(y_pred, y, mask=None):
         return np.mean(np.absolute(y_pred - y))
 
 # Mean squared error
-def mse(y_pred, y, mask=None):
+def mse(y_pred, y, mask=None, device=None):
+    if device.type == 'cuda':
+      y, y_pred, mask = y.cpu(), y_pred.cpu(), mask.cpu()
     y_pred, y = y_pred.numpy().squeeze(), y.numpy().squeeze()
     if mask is not None:
         mask = mask.numpy().squeeze()
@@ -21,7 +25,9 @@ def mse(y_pred, y, mask=None):
         return np.mean(np.power((y_pred - y), 2))
 
 # Average Pearson correlation coefficient
-def avg_pearson(y_pred, y, mask=None):
+def avg_pearson(y_pred, y, mask=None, device=None):
+    if device.type == 'cuda':
+      y, y_pred, mask = y.cpu(), y_pred.cpu(), mask.cpu()
     all_r = []
     y_pred, y = y_pred.numpy().squeeze(axis=-1), y.numpy().squeeze(axis=-1)
     if mask is not None: mask = mask.numpy().squeeze(axis=-1)
