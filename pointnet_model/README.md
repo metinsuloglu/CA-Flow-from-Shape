@@ -20,19 +20,20 @@ To do this, set environment variables:
     os.environ["TF_INC"] = tf.sysconfig.get_include()
     os.environ["TF_LIB"] = tf.sysconfig.get_lib()
 
-Then execute the script `tf_xxx_compile.sh` in each subfolder (the locations of `tensorflow_core` and `cuda-10.1` may need to be altered).
+Then execute the script `tf_xxx_compile.sh` in each subfolder (the location of `cuda-10.1` may need to be altered).
 
-There is currently a pre-trained model in the folder called `log`.
-
-If you would like to evaluate this model, execute:
+There is currently a pre-trained model in the folder called `log`. If you would like to evaluate this model, create a the folder `/data/ca_data` and add 
+a collection of CA point clouds and ground truth values as a number of .txt files (x,y,z values and TAWSS measurements). Make sure the file names are in
+the format expected by the code (`case_xx.txt`). Then, execute:
 
     python train_test.py False
     
 The argument specifies whether the model should be trained.
-If you would like to train a new model and then evaluate it, run:
+If you would like to train a new model on the same data and then evaluate it, run:
 
     python train_test.py True
     
+Warning: This will overwrite the currently saved model.
 After execution the code will save the test set results to a file in the `log` folder called `test_results`.
 
 ### Important files
