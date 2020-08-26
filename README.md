@@ -3,8 +3,12 @@ An investigation into applying deep learning to predict wall shear stress over c
 
 Part of my Master's Thesis at the University of Leeds.
 
+<p align="center">
+<img src="https://github.com/metinsuloglu/CA-Flow-from-Shape/blob/master/images/results.jpg" alt="TAWSS prediction results" width="80%"/>
+</p>
+
 ## Introduction
-The aim of the project is to examine ways of predicting time-averaged wall shear stress given the morphology of a cerebral aneurysm (CA).
+The aim of the project is to examine ways of predicting time-averaged wall shear stress (TAWSS) given the morphology of a cerebral aneurysm (CA).
 This repository contains two folders for different deep learning architectures:
 
 - [PointNet++](https://arxiv.org/abs/1706.02413)
