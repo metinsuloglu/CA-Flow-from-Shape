@@ -21,4 +21,5 @@ spherical convolution and pooling operations.
 Each folder contains the code for training and testing the models. Also, the folders contain saved models which have been pre-trained on 38 saccular CA
 shapes taken from a cohort of patients, with computational fluid dynamics (CFD) simulation results assumed to be the ground truth values.
 
-Please see the README files in each folder for more information on running the models and the requirements.
+Please see the README files in each folder for more information on running the models and the requirements. All code was tested on Unix-like operating systems 
+only.
